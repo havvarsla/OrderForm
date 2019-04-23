@@ -25,12 +25,23 @@ function init(){
 
   var itemBox=document.getElementById('itemName');
   itemBox.addEventListener('change', (event) =>  itemSelected(event.target.value));
+  itemBox.addEventListener('change', (event) => totalUpdate(event.target.value));
 
   document.getElementById('unitPrice').value=document.getElementById('itemName').value;
 }
 
 function itemSelected(val){
   document.getElementById('unitPrice').value=val;
+}
+
+function totalUpdate(val){
+var amountBox = document.querySelector('#amount');
+var totalPriceBox = document.querySelector('#totalPrice');
+var unitPriceBox = document.querySelector('#unitPrice');
+var totalAll = document.querySelector('#totalAll');
+selectedDeliveryType = val;
+totalPriceBox.value = amountBox.value * unitPriceBox.value;
+totalAll.value = (Number(totalPriceBox.value) + Number(selectedDeliveryType)).toFixed(2);
 }
 
 function orderSubmit(){
@@ -68,6 +79,9 @@ function renderRow(newOrder){
       currentCell.innerHTML=val;
       cellIndex++;
     })
+
+  // change the color of even rows
+  
 
 }
 
